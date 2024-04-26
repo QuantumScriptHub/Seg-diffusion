@@ -16,7 +16,7 @@ However, these models often struggle with unfamiliar image content or unseen tex
 Text-to-image diffusion models, on the other hand, have shown an impressive capability in generating high-quality images along with a wide range of open-vocabulary language descriptions. This led us to explore whether the comprehensive priors captured in text-to-image diffusion models could improve the zero-shot generalization of open-vocabulary semantic segmentation. In this study, we present Seg-diffusion, a novel approach derived from Stable Diffusion and built upon its rich prior knowledge of both visual and linguistic domains.
 This approach formulates open-vocabulary semantic segmentation as a denoising diffusion process from noisy masks to object masks.  Specifically, the object mask diffuses from ground-truth masks to a random distribution in latent space, and the model learns to reverse this noisy process to reconstruct object masks guided by text embeddings. Extensive experiments on several widely used open-vocabulary semantic segmentation benchmark datasets demonstrate that our proposed Seg-diffusion outperforms previous well-established methods. Moreover, Seg-diffusion can perform zero-shot transfer to unseen datasets, delivering top-tier results in open-vocabulary semantic segmentation.
 </p>
-  
+
 <div style="display:flex; justify-content:space-between;">
     <img src="result/finaltrain.jpg" width="48%">
     <img src="result/finalinfer.jpg" width="48%">
@@ -37,11 +37,10 @@ More results can be viewed by clicking on [result](./result).
 
 ## ⬇ Datasets
 **All datasets are available in public**.
-* Download the DUTS-TR and DUTS-TE from [Here](http://saliencydetection.net/duts/#org3aad434)
-* Download the DUT-OMRON from [Here](http://saliencydetection.net/dut-omron/#org96c3bab)
-* Download the HKU-IS from [Here](https://i.cs.hku.hk/~yzyu/research/deep_saliency.html)
-* Download the ECSSD from [Here](https://www.cse.cuhk.edu.hk/leojia/projects/hsaliency/dataset.html)
-* Download the PASCAL-S from [Here](http://cbs.ic.gatech.edu/salobj/)
+* Download the ADE20K from [Here](https://groups.csail.mit.edu/vision/datasets/ADE20K/)
+* Download the PASCAL VOC from [Here](https://datasetninja.com/pascal-voc-2012#download)
+* Download the PASCAL-Context from [Here](https://cs.stanford.edu/~roozbeh/pascal-context/#download)
+* Download the COCO-Stuff from [Here](https://github.com/nightrome/cocostuff)
   
 ## 🛠️  Dependencies
 ```bash
@@ -52,27 +51,29 @@ More results can be viewed by clicking on [result](./result).
 ```
 ## 📦 Checkpoint cache
 
-By default, our [checkpoint](https://drive.google.com/file/d/1bfnhDv6KKCJrsIy6DBj_41CMIt9EFxlG/view?usp=sharing) and [Res2Net backbone](https://drive.google.com/file/d/1aNRStCeNGLVE8x1z-cxNa42f2u0-AvZI/view?usp=sharing) are stored in Google Drive.
+By default, our [checkpoint](https://drive.google.com/file/d/1o8gBxJAgppyGZYZ_NeuHRv3gL6mhf_B3/view?usp=drive_link) is stored in Google Drive.
 You can click the link to download them and proceed directly with inference.
 
 ## ⚙ Configurations
 
 #### Training
 
-- --pretrained_model_name_or_path : [Pretrained model](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) path for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
-- --Res2Net_model_path : [Pretrained Res2Net backbone model](https://drive.google.com/file/d/1aNRStCeNGLVE8x1z-cxNa42f2u0-AvZI/view?usp=drive_link), you need to download it and place it in the corresponding local path.  
+- --pretrained_model_name_or_path : [Pretrained model](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) path for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.  
 - --train_img_list : img_list.txt, including the absolute path of all train images.  
-- --train_gt_list : gt_list.txt, including the absolute path of all ground truth masks.  
+- --train_gt_list : gt_list.txt, including the absolute path of all ground truth masks. These ground truth masks are represented using depth maps, where different depths correspond to different object categories.
+- --train_text_list : train_text.json, JSON file containing the text descriptions corresponding to the training objects.
 - --val_img : Path of the validation set of images.  
 - --val_gt : Path of the validation set of ground truth masks.
+- --val_text_list: Path of the validation set of text descriptions. 
 
 #### Inference 
 
 - --input_rgb_path : The local path of the image to be inferred.
 - --output_dir : The output path of the image after inference.
+- --class_name : a list with class name for open-vocabulary semantic segmentation
 - --stable_diffusion_repo_path : [Pretrained model](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) path for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
-- --pretrained_model_path : The path of the best checkpoint saved by the model you trained，you can also use the [checkpoint](https://drive.google.com/file/d/1bfnhDv6KKCJrsIy6DBj_41CMIt9EFxlG/view?usp=sharing) we trained, load them into a local path, and proceed with inference directly.
-- --Res2Net_model_path :  [Pretrained Res2Net backbone model](https://drive.google.com/file/d/1aNRStCeNGLVE8x1z-cxNa42f2u0-AvZI/view?usp=drive_link), you need to download it and place it in the corresponding local path. 
+- --pretrained_model_path : The path of the best checkpoint saved by the model you trained，you can also use the [checkpoint](https://drive.google.com/file/d/1o8gBxJAgppyGZYZ_NeuHRv3gL6mhf_B3/view?usp=drive_link) we trained, load them into a local path, and proceed with inference directly.
+
 
 The default settings are optimized for the best result. However, the behavior of the code can be customized:
 - Trade-offs between the **accuracy** and **speed** (for both options, larger values result in better accuracy at the cost of slower inference.)
@@ -87,7 +88,7 @@ The default settings are optimized for the best result. However, the behavior of
 
 ## 💻 Testing on your images
 ### 📷 Prepare images
-If you have images at hand, skip this step. Otherwise, download a few images from [Here](http://saliencydetection.net/duts/download/DUTS-TE.zip):
+If you have images at hand, skip this step. Otherwise, download a few images from [Here](https://cs.stanford.edu/~roozbeh/pascal-context/#download)
 ### 🎮 Training and  Inference
 Run **train.sh** and **inference.sh** scripts for  training and  inference.
 ```bash
