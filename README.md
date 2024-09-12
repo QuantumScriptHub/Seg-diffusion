@@ -6,7 +6,7 @@
 ![Static Badge](https://img.shields.io/badge/welcome-green?style=flat&label=PRs&labelColor=black&color=green)
 ![Static Badge](https://img.shields.io/badge/Python-green?style=flat&label=Language&labelColor=black&color=green)
 
-## 🪧 [Comprehensive supplements](https://github.com/QuantumScriptHub/Seg-diffusion/blob/semantic_segmentation/result/seg_diffusion_ACM_MM_2024_SUPP.pdf)
+## ⭐ [Comprehensive supplements](https://github.com/QuantumScriptHub/Seg-diffusion/blob/semantic_segmentation/result/seg_diffusion_ACM_MM_2024_SUPP.pdf)
 For more details on the experimental setup and comprehensive visual contrast results, please refer to our extensive [supplementary materials](https://github.com/QuantumScriptHub/Seg-diffusion/blob/semantic_segmentation/result/seg_diffusion_ACM_MM_2024_SUPP.pdf).  
 
 ##  📢 Overview
