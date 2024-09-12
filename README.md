@@ -6,15 +6,14 @@
 ![Static Badge](https://img.shields.io/badge/welcome-green?style=flat&label=PRs&labelColor=black&color=green)
 ![Static Badge](https://img.shields.io/badge/Python-green?style=flat&label=Language&labelColor=black&color=green)
 
-## ⭐ [Comprehensive supplements](https://github.com/QuantumScriptHub/Seg-diffusion/blob/semantic_segmentation/result/seg_diffusion_ACM_MM_2024_SUPP.pdf)
-For more details on the experimental setup and comprehensive visual contrast results, please refer to our extensive [supplementary materials](https://github.com/QuantumScriptHub/Seg-diffusion/blob/semantic_segmentation/result/seg_diffusion_ACM_MM_2024_SUPP.pdf).  
+## ⭐ [Comprehensive supplements](https://github.com/QuantumScriptHub/Seg-diffusion/blob/semantic_segmentation/result/icasspsupp.pdf)
+For more details on the experimental setup and comprehensive visual contrast results, please refer to our extensive [supplementary materials](https://github.com/QuantumScriptHub/Seg-diffusion/blob/semantic_segmentation/result/icasspsupp.pdf).  
 
 ##  📢 Overview
 <p align="justify">
-  Open-Vocabulary semantic segmentation is a challenging computer vision task that labels each pixel within an image based on text descriptions. The recent advancements in this field are largely due to the increased model capacity.
-However, these models often struggle with unfamiliar image content or unseen text descriptions, as their understanding of the visual language world is limited to the data they were trained on.
-Text-to-image diffusion models, on the other hand, have shown an impressive capability in generating high-quality images along with a wide range of open-vocabulary language descriptions. This led us to explore whether the comprehensive priors captured in text-to-image diffusion models could improve the zero-shot generalization of open-vocabulary semantic segmentation. In this study, we present Seg-diffusion, a novel approach derived from Stable Diffusion and built upon its rich prior knowledge of both visual and linguistic domains.
-This approach formulates open-vocabulary semantic segmentation as a denoising diffusion process from noisy masks to object masks.  Specifically, the object mask diffuses from ground-truth masks to a random distribution in latent space, and the model learns to reverse this noisy process to reconstruct object masks guided by text embeddings. Extensive experiments on several widely used open-vocabulary semantic segmentation benchmark datasets demonstrate that our proposed Seg-diffusion outperforms previous well-established methods. Moreover, Seg-diffusion can perform zero-shot transfer to unseen datasets, delivering top-tier results in open-vocabulary semantic segmentation.
+  Open-vocabulary semantic segmentation (OVSS) is a challenging computer vision task that labels each pixel within an image based on text descriptions. Recent advancements in OVSS are largely attributed to the increased model capacity. However, these models often struggle with unfamiliar images or unseen text, as their visual language understanding is limited to training data. Text-to-image (T2I) diffusion  models have demonstrated strong image generation with diverse open-vocabulary descriptions. It prompted us to explore whether the comprehensive priors in T2I diffusion models could enhance the zero-shot generalization of OVSS.
+In this study, we define OVSS as a denoising diffusion task from noisy to object mask and introduce Seg-diffusion, a novel method based on Stable Diffusion that utilizes its extensive visual and linguistic prior knowledge. Specifically, the object mask diffuses from ground-truth to a random distribution in latent space, and the model learns to reverse this noisy process to reconstruct object mask using text embeddings with our proposed Content Attention Module (CAM). 
+Extensive experiments on popular OVSS benchmarks show that Seg-diffusion outperforms previous well-established methods and achieves impressive zero-shot  generalization to unseen datasets.
 </p>
 
 <div style="display:flex; justify-content:space-between;">
